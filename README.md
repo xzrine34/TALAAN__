@@ -257,7 +257,13 @@ function startQRScanner(){
       return;
     }
 
-    let cameraId = devices[0].id;
+   let backCamera = devices.find(d =>
+  d.label.toLowerCase().includes("back") ||
+  d.label.toLowerCase().includes("rear") ||
+  d.label.toLowerCase().includes("environment")
+);
+
+let cameraId = backCamera ? backCamera.id : devices[0].id;
 
     html5QrCode.start(
       cameraId,
